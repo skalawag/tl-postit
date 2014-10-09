@@ -4,17 +4,17 @@
   <div class="row">
     <div class="span8 well">
       <p>
-	<%= render post.categories %>
+        <%= render post.categories %>
       </p>
       <h4><%= link_to post.title, post.url %></h4>
       <p><%= post.description %></p>
       <p>
-	<span class="quiet">Posted by </span><%= post.creator.username %>
-	<span class="quiet"><small>at <%= post.created_at %></small></span>
-      </p>
-      <span>
-	<%= link_to("#{post.comments.size} comments", post_path(post)) %>
-      </span>
-    </div>
-  </div>
+       <span class="quiet">Posted by </span><%= post.creator.username %>
+       <span class="quiet"><small>at <%= post.created_at %></small></span>
+     </p>
+     <span>
+       <%= link_to("#{post.comments.size} comments", post_path(post)) %>
+     </span>
+   </div>
+ </div>
 <% end %>

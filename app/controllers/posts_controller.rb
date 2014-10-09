@@ -8,9 +8,11 @@ class PostsController < ApplicationController
   end
 
   def new
+    @post.new
   end
 
   def create
+
   end
 
   def edit
