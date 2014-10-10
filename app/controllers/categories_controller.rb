@@ -5,7 +5,7 @@ class CategoriesController < ApplicationController
   end
 
   def create
-    @category = Category.new(post_params)
+    @category = Category.new(category_params)
     @category[:category].capitalize!
 
     if @category.save
@@ -16,11 +16,12 @@ class CategoriesController < ApplicationController
     end
   end
 
-  # Suppose I want to destroy a category?
+  def show
+  end
 
   private
 
-  def post_params
+  def category_params
     params.require(:category).permit(:category)
   end
 end
