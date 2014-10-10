@@ -6,13 +6,18 @@
   <%= f.text_field :title %>
   <%= f.label :url %>
   <%= f.text_field :url %>
-  <hr/>
-    <%= collection_select(:post, :categories, Category.all, :id, :category) %>
-  <hr/>
-  <div class="well">
-    <%= f.label :description %>
-    <%= f.text_area :description, rows: 10, class: "span11" %>
+
+  <%= f.label :description %>
+  <%= f.text_area :description, rows: 5, class: "span11" %>
+
+  <div class="control-group">
+    <%= f.label "Categories" %>
+    <%= f.collection_check_boxes :category_ids, Category.all, :id, :category do |cb| %>
+    <%= cb.label(class: "checkbox inline") { cb.check_box(class: "checkbox") + cb.text} %>
+    <% end %>
   </div>
+
+
   <br/>
   <%= f.submit class: "btn btn-primary" %>
 <% end %>
