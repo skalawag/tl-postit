@@ -12,8 +12,28 @@
   <%= @post.description %>
 </p>
 
+<hr/>
+
+<div class="well span8"
 <%= form_for [@post, @comment] do |f| %>
-  <%= f.text_area :body %>
+  <%= render partial: "shared/error", object: @comment %>
+  <%= f.label :body, 'Leave a comment' %>
+  <%= f.text_area :body, rows: 4, class: "span5" %>
   <br/>
-  <%= f.submit "Create Comment", class: "btn btn-primary" %>
+  <%= f.submit class: "btn btn-primary" %>
+<% end %>
+</div>
+
+<div class="span8">
+<h4>Previous Comments:</h4>
+</div>
+
+<% @post.comments.each do |comment| %>
+    <div class="well span8">
+      <p>
+      <%= comment.body %>
+      </p>
+      <span class="quiet">By </span><%= link_to comment.user.username, '' %>
+      <span class="quiet"><small>at <%= comment.created_at %></small></span>
+    </div>
 <% end %>
