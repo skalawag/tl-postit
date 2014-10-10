@@ -1,10 +1,14 @@
 <%= render partial: "shared/error", object: @post %>
 
+
 <%= form_for @post do |f| %>
   <%= f.label :title %>
   <%= f.text_field :title %>
   <%= f.label :url %>
   <%= f.text_field :url %>
+  <hr/>
+    <%= collection_select(:post, :categories, Category.all, :id, :category) %>
+  <hr/>
   <div class="well">
     <%= f.label :description %>
     <%= f.text_area :description, rows: 10, class: "span11" %>

@@ -14,9 +14,11 @@ class PostsController < ApplicationController
   end
 
   def create
+    binding.pry
     @post = Post.new(post_params)
     # FIXME: we need a user, so we'll just stick one in.
     @post.creator = User.first
+    @post.categories << Category.find(params[:post][:categories])
     if @post.save
       flash[:notice] = "Your post was created."
       redirect_to posts_path
