@@ -1,3 +1,5 @@
-<%= render 'shared/content_title', title: "Category: #{@category.category}" %>
+<% all_posts = link_to('All Posts', posts_path) %>
+
+<%= render 'shared/content_title', title: "#{all_posts} &raquo; Category: #{@category.category}".html_safe %>
 
 <%= render partial: 'shared/category_index_list', object: @category.posts %>
