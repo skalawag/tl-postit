@@ -1,0 +1,10 @@
+<%= render 'shared/content_title', title: "Edit your profile" %>
+
+<%= form_for @user do |f| %>
+  <%= f.label :username %>
+  <%= f.text_field :username %>
+  <%= f.label :bio %>
+  <%= f.text_area :bio %>
+  </br>
+  <%= f.submit class: "btn btn-primary" %>
+<% end %>
