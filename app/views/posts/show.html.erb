@@ -14,13 +14,13 @@
 
 <hr/>
 
-<div class="well span8"
+<div class="well span8">
 <%= form_for [@post, @comment] do |f| %>
   <%= render partial: "shared/error", object: @comment %>
-  <%= f.label :body, 'Leave a comment' %>
-  <%= f.text_area :body, rows: 4, class: "span5" %>
+  <%= f.label :body, 'Leave a comment (you must be logged in)' %>
+  <%= f.text_area :body, rows: 4, class: "span5", disabled: (not logged_in?) %>
   <br/>
-  <%= f.submit class: "btn btn-primary" %>
+  <%= f.submit class: "btn btn-primary", disabled: (not logged_in?) %>
 <% end %>
 </div>
 
