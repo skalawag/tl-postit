@@ -2,11 +2,4 @@
 
 <%= render partial: "shared/error", object: @user %>
 
-<%= form_for @user do |f| %>
-  <%= f.label :username %>
-  <%= f.text_field :username %>
-  <%= f.label :password %>
-  <%= f.text_field :password %>
-  <br/>
-  <%= f.submit class: "btn btn-primary" %>
-<% end %>
+<%= render "form" %>
