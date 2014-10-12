@@ -6,6 +6,7 @@ PostitTemplate::Application.routes.draw do
   end
 
   resources :users, only: [:new, :create]
+  get 'register', to: 'users#new'
   resources :categories, only: [:new, :create, :show]
 
   get '/login', to: 'sessions#new'
