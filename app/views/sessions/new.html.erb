@@ -1,0 +1,11 @@
+<%= render "shared/content_title", title: "Login to Postit" %>
+
+<%= form_tag("/login", method: "post") do %>
+  <%= label_tag(:username, "Username:") %>
+  <%= text_field_tag(:username) %>
+  </br>
+  <%= label_tag(:password, "Password:") %>
+  <%= text_field_tag(:password) %>
+  </br>
+  <%= submit_tag("Submit", class: "btn btn-success") %>
+<% end %>
