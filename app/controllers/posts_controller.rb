@@ -10,7 +10,12 @@ class PostsController < ApplicationController
   end
 
   def new
-    @post = Post.new
+    if not current_user
+      flash[:error] = "You must log in or register to create a new post."
+      redirect_to posts_path
+    else
+      @post = Post.new
+    end
   end
 
   def create
@@ -26,6 +31,10 @@ class PostsController < ApplicationController
   end
 
   def edit
+    if not current_user
+      flash[:error] = "You must be the author of a post and logged in to edit it."
+      redirect_to post_path
+    end
   end
 
   def update
