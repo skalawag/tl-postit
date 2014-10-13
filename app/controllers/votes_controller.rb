@@ -12,7 +12,7 @@ class VotesController < ApplicationController
   end
 
   def comment_vote
-    comment = Comment.find_by id: params[:comment_id]
+    comment = Comment.find_by id: params[:id]
     if current_user
       vote = Vote.create(user_id: current_user.id, vote: params[:vote], votable: comment)
     redirect_to :back
