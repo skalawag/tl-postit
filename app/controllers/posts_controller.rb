@@ -18,6 +18,10 @@ class PostsController < ApplicationController
     end
   end
 
+  def vote
+    binding.pry
+  end
+
   def create
     @post = Post.new(post_params)
     @post.creator = current_user

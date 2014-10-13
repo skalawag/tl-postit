@@ -6,6 +6,10 @@ PostitTemplate::Application.routes.draw do
   end
 
   resources :users, only: [:new, :create, :edit, :update]
+
+  post '/vote/post/:id', to: 'votes#post_vote'
+  post '/vote/comment/:id', to: 'votes#comment_vote'
+
   get 'register', to: 'users#new'
   get 'users/profile', to: 'users#show'
   resources :categories, only: [:new, :create, :show]
