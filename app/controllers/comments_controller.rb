@@ -19,4 +19,12 @@ class CommentsController < ApplicationController
       end
     end
   end
+
+  def vote
+    comment = Comment.find_by id: params[:id]
+    if current_user
+      vote = Vote.create(user_id: current_user.id, vote: params[:vote], votable: comment)
+      redirect_to post_path(comment.post.id)
+    end
+  end
 end

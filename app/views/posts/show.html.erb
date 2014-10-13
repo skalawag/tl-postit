@@ -30,7 +30,7 @@
   <div class="row">
     <div class="span0 well text-center">
 
-      <%= link_to "/vote/comment/#{comment.id}?vote=true", method: "post", rel: "nofollow" do %>
+      <%= link_to "/comments/#{comment.id}/vote?vote=true", method: "post", rel: "nofollow" do %>
         <i class="icon-arrow-up"></i>
       <% end %>
       <br/>
@@ -38,7 +38,7 @@
       <%= comment.votes.count %> votes
 
       <br/>
-      <%= link_to "/vote/comment/#{comment.id}?vote=false", method: "post", rel: "nofollow" do %>
+      <%= link_to "/comments/#{comment.id}/vote?vote=false", method: "post", rel: "nofollow" do %>
         <i class="icon-arrow-down"></i>
       <% end %>
     </div>

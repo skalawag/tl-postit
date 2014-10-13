@@ -19,7 +19,11 @@ class PostsController < ApplicationController
   end
 
   def vote
-    binding.pry
+    post = Post.find_by id: params[:id]
+    if current_user
+      vote = Vote.create(user_id: current_user.id, vote: params[:vote], votable: post)
+      redirect_to posts_path
+    end
   end
 
   def create

@@ -7,8 +7,11 @@ PostitTemplate::Application.routes.draw do
 
   resources :users, only: [:new, :create, :edit, :update]
 
-  post '/vote/post/:id', to: 'votes#post_vote'
-  post '/vote/comment/:id', to: 'votes#comment_vote'
+  post '/posts/:id/vote', to: 'posts#vote'
+  post '/comments/:id/vote', to: 'comments#vote'
+
+  #post '/vote/post/:id', to: 'votes#post_vote'
+  #post '/vote/comment/:id', to: 'votes#comment_vote'
 
   get 'register', to: 'users#new'
   get 'users/profile', to: 'users#show'
