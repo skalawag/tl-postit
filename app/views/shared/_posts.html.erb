@@ -2,20 +2,21 @@
     <div class="span0 well well-small text-center">
 
       <%= link_to "/posts/#{post.id}/vote?vote=true", method: "post", rel: "nofollow" do %>
-        <i class="icon-arrow-up"></i>
+        <i class="icon-thumbs-up"></i>
       <% end %>
       <br/>
       <%= total_votes(post) %> votes
       <br/>
       <%= link_to "/posts/#{post.id}/vote?vote=false", method: "post", rel: "nofollow" do %>
-        <i class="icon-arrow-down"></i>
+        <i class="icon-thumbs-down"></i>
       <% end %>
     </div>
 
     <div class="span8 well well-small">
 
       <ul class="inline">
-        <li id="title"><%= link_to post.title, post.url %></li>
+        <li id="title"><%= link_to post.title, post_path(post) %></li>
+        <li> <%= link_to "(visit)", post.url %> </li>
         <li class="pull-right">(<%= link_to("#{post.comments.size} comments", post_path(post)) %>)<li>
 
       </ul>
