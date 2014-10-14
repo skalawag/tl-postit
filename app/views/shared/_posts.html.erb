@@ -12,18 +12,21 @@
       <% end %>
     </div>
 
-    <div class="span8 well">
-      <p>
-        <%= render post.categories %>
-      </p>
-      <h4><%= link_to post.title, post.url %></h4>
-      <p><%= post.description %></p>
-      <p>
-	<span class="quiet">Posted by </span><%= post.creator.username %>
-	<span class="quiet"><small>on <%= readable_time(post.created_at) %></small></span>
-      </p>
-      <span>
+    <div class="span8 well well-small">
+
+      <ul class="inline">
+        <li id="title"><%= link_to post.title, post.url %></li>
+        <li class="pull-right">
+	  <span class="quiet">Posted by </span> <%= link_to "#{post.creator.username}", user_path(post.creator) %>
+	  <span class="quiet"><small>on <%= readable_time(post.created_at) %></small></span>
+        </li>
+      </ul>
+      <span class="pull-right">
 	<%= link_to("#{post.comments.size} comments", post_path(post)) %>
       </span>
+
+      <p><%= post.description %></p>
+
+      <%= render post.categories %>
     </div>
   </div>
