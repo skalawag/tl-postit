@@ -35,7 +35,7 @@
       <% end %>
       <br/>
 
-      <%= comment.votes.count %> votes
+      <%= total_votes(comment) %> votes
 
       <br/>
       <%= link_to "/comments/#{comment.id}/vote?vote=false", method: "post", rel: "nofollow" do %>
