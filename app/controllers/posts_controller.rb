@@ -20,19 +20,15 @@ class PostsController < ApplicationController
 
   def vote
     post = Post.find_by id: params[:id]
+    vote = Vote.create(user_id: current_user.id, vote: params[:vote], votable: post)
 
-    if current_user
-      if user_hasnt_voted(post)
-        vote = Vote.create(user_id: current_user.id, vote: params[:vote], votable: post)
-        redirect_to posts_path
-      else
-        flash[:error] = "You cannot vote twice one post!"
-        redirect_to posts_path
-      end
+    if vote.valid?
+      flash[:notice] = "Your vote has been counted."
     else
-      flash[:error] = "You must be logged in to vote."
-      redirect_to posts_path
+      flash[:notice] = "You cannot vote twice on one post."
     end
+
+    redirect_to posts_path
   end
 
   def create
