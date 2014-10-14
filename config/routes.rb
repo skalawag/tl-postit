@@ -5,7 +5,7 @@ PostitTemplate::Application.routes.draw do
     resources :comments, only: :create
   end
 
-  resources :users, only: [:new, :create, :edit, :update]
+  resources :users, only: [:new, :create, :edit, :update, :show]
 
   post '/posts/:id/vote', to: 'posts#vote'
   post '/comments/:id/vote', to: 'comments#vote'

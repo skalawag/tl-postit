@@ -1,5 +1,5 @@
 <p class="pull-right">
-<%= link_to("Edit Post", edit_post_path(@post)) %>
+  <%= link_to("Edit Post", edit_post_path(@post)) %>
 <p>
 
 <p>
@@ -27,28 +27,5 @@
 <%= render 'shared/content_title', title: "Previous comments" %>
 
 <% @post.comments.each do |comment| %>
-  <div class="row">
-    <div class="span0 well text-center">
-
-      <%= link_to "/comments/#{comment.id}/vote?vote=true", method: "post", rel: "nofollow" do %>
-        <i class="icon-arrow-up"></i>
-      <% end %>
-      <br/>
-
-      <%= total_votes(comment) %> votes
-
-      <br/>
-      <%= link_to "/comments/#{comment.id}/vote?vote=false", method: "post", rel: "nofollow" do %>
-        <i class="icon-arrow-down"></i>
-      <% end %>
-    </div>
-
-    <div class="well span8">
-      <p>
-      <%= comment.body %>
-      </p>
-      <span class="quiet">By </span><%= link_to comment.user.username, '' %>
-      <span class="quiet"><small>at <%= comment.created_at %></small></span>
-    </div>
-  </div>
+  <%= render '/shared/comments', comment: comment %>
 <% end %>

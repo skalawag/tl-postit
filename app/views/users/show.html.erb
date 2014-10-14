@@ -2,9 +2,34 @@
 
 <div class="well" %>
   <dl class="dl-horizontal">
-    <dt><em><%= label_tag "User name" %></em></dt>
+    <dt>User name</dt>
     <dd><p><%= @user.username %></p></dd>
-    <dt><em><%= label_tag "Bio" %></em></dt>
+    <dt>Bio</dt>
     <dd><p><%= @user.bio %></p></dd>
   </dl>
 </div>
+
+<h5><%= @user.username %>'s activity </h5>
+
+<ul class="nav nav-tabs">
+  <li class='<%= 'active' if params[:tab].nil? %>'>
+    <%= link_to "Posts (#{@user.posts.size})", user_path(@user) %>
+  </li>
+  <li class='<%= 'active' if params[:tab] == 'comments' %>' >
+    <%= link_to "Comments (#{@user.comments.size})", user_path(@user, tab: "comments") %>
+  </li>
+</ul>
+
+<% if params[:tab].nil? %>
+
+  <% @user.posts.each do |post| %>
+   <%= render '/shared/posts', post: post %>
+  <% end %>
+
+<% else %>
+
+  <% @user.comments.each do |comment| %>
+    <%= render '/shared/comments', comment: comment, show_post: true %>
+  <% end %>
+
+<% end %>

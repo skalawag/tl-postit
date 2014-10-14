@@ -1,0 +1,28 @@
+<% show_post ||= false %>
+
+  <div class="row">
+    <div class="span0 well text-center">
+
+      <%= link_to "/comments/#{comment.id}/vote?vote=true", method: "post", rel: "nofollow" do %>
+        <i class="icon-arrow-up"></i>
+      <% end %>
+      <br/>
+
+      <%= total_votes(comment) %> votes
+
+      <br/>
+      <%= link_to "/comments/#{comment.id}/vote?vote=false", method: "post", rel: "nofollow" do %>
+        <i class="icon-arrow-down"></i>
+      <% end %>
+    </div>
+
+    <div class="well span8">
+      <em>"<%= comment.body %>"</em>
+      <% if show_post %>
+        on <%= link_to comment.post.title, post_path(comment.post) %>
+      <% end %>
+      <br/>
+      <span class="quiet">By </span><%= link_to comment.user.username, '' %>
+      <span class="quiet"><small>at <%= comment.created_at %></small></span>
+    </div>
+  </div>
