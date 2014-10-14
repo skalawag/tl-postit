@@ -19,16 +19,22 @@ class PostsController < ApplicationController
   end
 
   def vote
-    post = Post.find_by id: params[:id]
-    vote = Vote.create(user_id: current_user.id, vote: params[:vote], votable: post)
-
-    if vote.valid?
-      flash[:notice] = "Your vote has been counted."
-    else
-      flash[:notice] = "You cannot vote twice on one post."
+    @post = Post.find_by id: params[:id]
+    @vote = Vote.create(user_id: current_user.id, vote: params[:vote], votable: @post)
+    respond_to do |format|
+      format.html do
+        if @vote.valid?
+          flash[:notice] = "Your vote has been counted."
+        else
+          flash[:notice] = "You cannot vote twice on one post."
+        end
+        redirect_to posts_path
+      end
+      # by default this will try to render a vote.js.erb file, so we
+      # can leave off the block if that is what we want.
+      format.js
     end
 
-    redirect_to posts_path
   end
 
   def create
