@@ -1,13 +1,13 @@
   <div class="row">
     <div class="span0 well well-small text-center">
 
-      <%= link_to "/posts/#{post.id}/vote?vote=true", method: "post", rel: "nofollow" do %>
+      <%= link_to vote_post_path(post, vote: true), method: "post" do %>
         <i class="icon-thumbs-up"></i>
       <% end %>
       <br/>
       <%= total_votes(post) %> votes
       <br/>
-      <%= link_to "/posts/#{post.id}/vote?vote=false", method: "post", rel: "nofollow" do %>
+      <%= link_to vote_post_path(post, vote: false), method: "post" do %>
         <i class="icon-thumbs-down"></i>
       <% end %>
     </div>
