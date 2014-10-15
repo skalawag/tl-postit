@@ -1,5 +1,5 @@
 class PostsController < ApplicationController
-  before_action :set_post, only: [:show, :edit, :update]
+  before_action :set_post, only: [:show, :edit, :update, :vote]
 
   def index
     @posts = Post.all
@@ -19,7 +19,6 @@ class PostsController < ApplicationController
   end
 
   def vote
-    @post = Post.find_by id: params[:id]
     @vote = Vote.create(user_id: current_user.id, vote: params[:vote], votable: @post)
     respond_to do |format|
       format.html do
@@ -73,6 +72,6 @@ class PostsController < ApplicationController
       end
 
   def set_post
-    @post = Post.find(params[:id])
+    @post = Post.find_by slug: params[:id]
   end
 end
