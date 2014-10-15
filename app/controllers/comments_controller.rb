@@ -5,7 +5,7 @@ class CommentsController < ApplicationController
       flash[:error] = "You must be logged in to leave a comment."
       redirect_to post_path(params[:post_id])
     else
-      @post = Post.find(params[:post_id])
+      @post = Post.find_by slug: params[:post_id]
       @comment = @post.comments.build(params.require(:comment).permit(:body))
       ## prev line equivalent to:
       #@comment = Comment.new(params.require(:comment).permit(:body))
