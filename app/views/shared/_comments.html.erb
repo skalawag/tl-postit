@@ -1,7 +1,7 @@
 <% show_post ||= false %>
 
 <div class="row">
-  <div class="span0 well text-center">
+  <div class="span0">
 
     <%= link_to vote_comment_path(comment, vote: true), method: "post", remote: true do %>
       <i class="icon-thumbs-up"></i>
@@ -15,7 +15,7 @@
     <% end %>
   </div>
 
-  <div class="well span8">
+  <div class="span8">
     <em>"<%= comment.body %>"</em>
     <% if show_post %>
       on <%= link_to comment.post.title, post_path(comment.post) %>
@@ -24,4 +24,5 @@
     <span class="quiet">By </span><%= link_to comment.user.username, '' %>
     <span class="quiet"><small>at <%= comment.created_at %></small></span>
   </div>
+  <hr/>
 </div>
