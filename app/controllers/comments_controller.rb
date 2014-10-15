@@ -21,18 +21,19 @@ class CommentsController < ApplicationController
   end
 
   def vote
-    comment = Comment.find_by id: params[:id]
-    if current_user
-      if user_hasnt_voted(comment)
-        vote = Vote.create(user_id: current_user.id, vote: params[:vote], votable: comment)
-        redirect_to post_path(comment.post.id)
-      else
-        flash[:error] = "You cannot vote twice on one comment!"
-        redirect_to post_path(comment.post.id)
+    @comment = Comment.find_by id: params[:id]
+    @vote = Vote.create(user_id: current_user.id, vote: params[:vote], votable: @comment)
+
+    respond_to do |format|
+      format.html do
+        if @vote.valid?
+          flash[:notice] = "Your vote has been counted."
+        else
+          flash[:notice] = "You cannot vote twice on a comment."
+        end
+        redirect_to post_path(@comment.post.id)
       end
-    else
-      flash[:error] = "You must be logged in to vote."
-      redirect_to post_path(comment.post.id)
+      format.js
     end
   end
 end
