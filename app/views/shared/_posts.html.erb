@@ -1,12 +1,17 @@
-<div class="row">
-  <div class="span0 well well-small text-center">
+<% if post.url == "" %>
+  <% post_url = "self" %>
+<% else %>
+  <% post_url = post.url %>
+<% end %>
 
+<div class="row">
+  <div class="span0">
     <%= link_to vote_post_path(post, vote: true), method: "post", remote:true do %>
       <i class="icon-thumbs-up"></i>
     <% end %>
     <br/>
 
-    <span id="post_<%=post.slug%>_votes"><%= total_votes(post) %> votes</span>
+    <span id="post_<%=post.slug%>_votes"><%= total_votes(post) %></span>
 
     <br/>
     <%= link_to vote_post_path(post, vote: false), method: "post", remote: true do %>
@@ -14,16 +19,14 @@
     <% end %>
   </div>
 
-  <div class="span8 well well-small">
-
+  <div>
     <ul class="inline">
       <li id="title"><%= link_to post.title, post_path(post) %></li>
-      <li> <%= link_to "(visit)", post.url %> </li>
+      <li> <%= link_to "(#{post_url})", post.url %> </li>
       <li class="pull-right">(<%= link_to("#{post.comments.size} comments", post_path(post)) %>)<li>
 
     </ul>
 
-    <p><%= post.description %></p>
     <ul class='inline'>
       <li>
 	<span class="quiet">Posted by </span> <%= link_to "#{post.creator.username}", user_path(post.creator) %>
@@ -32,4 +35,5 @@
       <li class="pull-right"><%= render post.categories %></li>
     </ul>
   </div>
+  <hr class="post_sep" />
 </div>
