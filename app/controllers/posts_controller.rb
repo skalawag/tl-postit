@@ -49,7 +49,7 @@ class PostsController < ApplicationController
   end
 
   def edit
-    post = Post.find_by id: params[:id]
+    post = Post.find_by slug: params[:id]
     if (not current_user) || post.creator.id != current_user[:id]
       flash[:error] = "You must be logged and the author of a post you want to edit."
       redirect_to post_path
