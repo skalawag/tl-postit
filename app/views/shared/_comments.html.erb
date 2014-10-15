@@ -8,7 +8,7 @@
     <% end %>
     <br/>
 
-    <span id="comment_<%= comment.id %>_votes"><%= total_votes(comment) %> votes</span>
+    <span id="comment_<%= comment.id %>_votes"><%= total_votes(comment) %></span>
     <br/>
     <%= link_to vote_comment_path(comment, vote: false), method: "post", remote: true do %>
       <i class="icon-thumbs-down"></i>
