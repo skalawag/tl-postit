@@ -50,14 +50,15 @@ class PostsController < ApplicationController
   end
 
   def edit
-    if not current_user
-      flash[:error] = "You must be the author of a post and logged in to edit it."
+    post = Post.find_by id: params[:id]
+    if (not current_user) || post.creator.id != current_user[:id]
+      flash[:error] = "You must be logged and the author of a post you want to edit."
       redirect_to post_path
     end
   end
 
   def update
-    if @post.update(post_params)
+    if @post.update(post_params) &&
       flash[:notice] = "Your post has been updated."
       redirect_to posts_path
     else
