@@ -5,6 +5,10 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new(user_params)
+    if User.count == 0
+      @user.role = "admin"
+    end
+
     if @user.save
       flash[:notice] = "Welcome #{@user.username}"
       session[:user_id] = @user.id
