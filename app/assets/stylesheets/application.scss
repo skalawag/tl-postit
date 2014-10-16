@@ -18,10 +18,6 @@
   margin-left: 135px
 }
 
-.navbar .nav > li > a.brand {
-  padding-left: 0px;
-}
-
 .quiet {
   color: #ababab;
 }
@@ -43,5 +39,16 @@ div.comment_votes {
 }
 
 #title {
-  font-size: 25px;
+  font-size: 22px;
 }
+
+
+.btn {
+  margin-right: 20px;
+  background: #939398;
+  color: #000
+}
+
+.btn.btn-small.dropdown-toggle {
+  margin-left: 40px;
+  }
