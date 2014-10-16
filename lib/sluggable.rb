@@ -12,7 +12,7 @@ module Sluggable
   def generate_slug
     ###   this, has the effect of calling self.title in the Post class
     slug = self.send(self.class.slug_column.to_sym)
-    slug = self.title.strip()
+    slug = slug.strip()
     slug.gsub! /\s*[^A-Za-z0-9]\s*/, '-'
     slug.gsub! /-+/, "-"
 
@@ -26,6 +26,13 @@ module Sluggable
       slug = slug[0...-1] + count.to_s
       post = self.class.find_by slug: slug
       count += 1
+    end
+
+    # remove any trailing '-' chars
+    while slug[-1] == "-"
+      slug = slug[0..-2]
+    end
+
     end
     self.slug = slug.downcase
   end
