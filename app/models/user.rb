@@ -11,4 +11,8 @@ class User < ActiveRecord::Base
 
   sluggable_column :username
   before_save :generate_slug
+
+  def admin?
+    self.role == "admin"
+  end
 end

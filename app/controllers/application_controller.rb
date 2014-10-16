@@ -16,7 +16,7 @@ class ApplicationController < ActionController::Base
   def total_votes(votable)
     votes = votable.votes
     votes.select { |v| v if v.vote }.count - votes.select { |v| v if not v.vote }.count
-  end
+    end
 
   def user_hasnt_voted(votable)
     votable.votes.each do |vote|
