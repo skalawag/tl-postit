@@ -29,7 +29,7 @@
 
     <ul class='inline'>
       <li>
-	<span class="quiet">Posted by </span> <%= link_to "#{post.user_id}", user_path(post.creator) %>
+	<span class="quiet">Posted by </span> <%= link_to "#{post.creator.username}", user_path(post.creator) %>
 	<span class="quiet"><small>on <%= readable_time(post.created_at) %></small></span>
       </li>
       <li class="pull-right"><%= render post.categories %></li>
