@@ -13,28 +13,4 @@ class Post < ActiveRecord::Base
 
   sluggable_column :title
   before_save :generate_slug
-
-  # def to_param
-  #   self.slug
-  # end
-
-  # def generate_slug
-  #   ###   this, has the effect of calling self.title in the Post class
-  #   slug = self.title.strip()
-  #   slug.gsub! /\s*[^A-Za-z0-9]\s*/, '-'
-  #   slug.gsub! /-+/, "-"
-
-  #   post = Post.find_by slug: slug
-  #   if post
-  #     slug += "--"
-  #   end
-
-  #   count = 2
-  #   while post && post != self
-  #     slug = slug[0...-1] + count.to_s
-  #     post = Post.find_by slug: slug
-  #     count += 1
-  #   end
-  #   self.slug = slug.downcase
-  # end
 end
