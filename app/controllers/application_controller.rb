@@ -26,4 +26,13 @@ class ApplicationController < ActionController::Base
       true
     end
   end
+
+  def require_admin
+    access_denied unless logged_in? and current_user.admin?
+  end
+
+  def access_denied
+    flash[:error] = "You don't have the access priveleges to do that."
+    redirect_to root_path
+  end
 end
