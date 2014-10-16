@@ -6,7 +6,7 @@
 
 <div class="row">
   <div class="span0">
-    <%= link_to vote_post_path(post, vote: true), method: "post", remote:true do %>
+    <%= link_to vote_post_path(post[:id], vote: true), method: "post", remote:true do %>
       <i class="icon-thumbs-up"></i>
     <% end %>
     <br/>
@@ -14,7 +14,7 @@
     <span id="post_<%=post.slug%>_votes"><%= total_votes(post) %></span>
 
     <br/>
-    <%= link_to vote_post_path(post, vote: false), method: "post", remote: true do %>
+    <%= link_to vote_post_path(post[:id], vote: false), method: "post", remote: true do %>
       <i class="icon-thumbs-down"></i>
     <% end %>
   </div>
@@ -29,7 +29,7 @@
 
     <ul class='inline'>
       <li>
-	<span class="quiet">Posted by </span> <%= link_to "#{post.creator.username}", user_path(post.creator) %>
+	<span class="quiet">Posted by </span> <%= link_to "#{post.user_id}", user_path(post.creator) %>
 	<span class="quiet"><small>on <%= readable_time(post.created_at) %></small></span>
       </li>
       <li class="pull-right"><%= render post.categories %></li>
