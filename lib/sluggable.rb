@@ -32,8 +32,6 @@ module Sluggable
     while slug[-1] == "-"
       slug = slug[0..-2]
     end
-
-    end
     self.slug = slug.downcase
   end
 
