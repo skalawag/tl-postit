@@ -33,7 +33,6 @@ class PostsController < ApplicationController
       # can leave off the block if that is what we want.
       format.js
     end
-
   end
 
   def create
@@ -50,8 +49,8 @@ class PostsController < ApplicationController
 
   def edit
     post = Post.find_by slug: params[:id]
-    if (not current_user) || post.creator.id != current_user[:id]
-      flash[:error] = "You must be logged and the author of a post you want to edit."
+    if !logged_in? || post.creator.id != current_user[:id] and !current_user.admin?
+      flash[:error] = "You must be logged in and either the author of a post or an admin in order to edit."
       redirect_to post_path
     end
   end
