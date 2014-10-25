@@ -1,4 +1,4 @@
-<% if post.url == "" %>
+<% if post.url == "" or !post.url %>
   <% post_url = "self" %>
 <% else %>
   <% post_url = post.url %>
@@ -22,7 +22,7 @@
   <div>
     <ul class="inline">
       <li id="title"><%= link_to post.title, post_path(post) %></li>
-      <% if post.url.length > 4 %>
+      <% if !post.url or post.url.length > 4 %>
         <li> <%= link_to "(visit)", post.url %> </li>
       <% else %>
         <li> <%= link_to "(self)", post_path(post) %> </li>
