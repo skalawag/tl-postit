@@ -23,7 +23,7 @@
     <ul class="inline">
       <li id="title"><%= link_to post.title, post_path(post) %></li>
       <% if post.url.length > 40 %>
-        <li> <%= link_to "(#{post_url[0..40]})", post.url %> </li>
+        <li> <%= link_to "(#{post_url[0..40] + '...'})", post.url %> </li>
       <% else %>
         <li> <%= link_to "(#{post_url})", post.url %> </li>
       <% end %>
